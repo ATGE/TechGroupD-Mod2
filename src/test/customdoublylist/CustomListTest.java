@@ -1,4 +1,4 @@
-package customlist;
+package customdoublylist;
 
 import static org.junit.Assert.*;
 

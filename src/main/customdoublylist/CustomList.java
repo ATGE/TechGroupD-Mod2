@@ -1,25 +1,28 @@
-package customlist;
+package customdoublylist;
 
 /**
- * CustomList ,linked list implementation of the {@code IList} interface.
+ * CustomList, doubly-linked list implementation of the {@code IList} interface.
+ * @param  <E> the type of elements held in this collection
  */
 public class CustomList<E> implements IList<E> {
 
-  Node<E> head;
-  Node<E> tail;
+  private Node<E> head;
+  private Node<E> tail;
 
   /**
    * {@inheritDoc}
    */
   @Override
   public void add(E value) {
-    Node<E> newNode = new Node(value);
-    if (head == null) {
+    Node<E> last = tail;
+    Node<E> newNode = new Node<>(value);
+    newNode.previous = tail;
+    tail = newNode;
+    if (last == null) {
       head = newNode;
     } else {
-      tail.next = newNode;
+      last.next = newNode;
     }
-    tail = newNode;
   }
 
   /**
@@ -27,11 +30,14 @@ public class CustomList<E> implements IList<E> {
    */
   @Override
   public void addFirst(E value) {
-    Node<E> newNode = new Node(value);
+    Node<E> first = head;
+    Node<E> newNode = new Node<>(value);
     newNode.next = head;
     head = newNode;
-    if (newNode.next == null) {
+    if (first == null) {
       tail = newNode;
+    } else {
+      first.previous = newNode;
     }
   }
 
@@ -54,6 +60,7 @@ public class CustomList<E> implements IList<E> {
       currentNode = currentNode.next;
     }
     newNode.next = currentNode.next;
+    newNode.previous = currentNode;
     currentNode.next = newNode;
   }
 
@@ -62,11 +69,12 @@ public class CustomList<E> implements IList<E> {
    */
   @Override
   public void remove(int index) {
-    Node currentNode = head;
+    Node<E> currentNode = head;
     for (int i = 0; i < index - 1; i++) {
       currentNode = currentNode.next;
     }
     currentNode.next = currentNode.next.next;
+    currentNode.next.previous = currentNode;
   }
 
   /**
@@ -100,12 +108,8 @@ public class CustomList<E> implements IList<E> {
   public void removeLast() {
     if (head != null) {
       if (tail != head) {
-        Node<E> currentNode = head;
-        while (currentNode.next != tail) {
-          currentNode = currentNode.next;
-        }
-        tail = currentNode;
-        currentNode.next = null;
+        tail = tail.previous;
+        tail.next = null;
       } else {
         head = tail = null;
       }
@@ -119,6 +123,7 @@ public class CustomList<E> implements IList<E> {
   public void removeFirst() {
     if (head != null) {
       head = head.next;
+      head.previous = null;
     }
     if (head == null) {
       tail = null;
