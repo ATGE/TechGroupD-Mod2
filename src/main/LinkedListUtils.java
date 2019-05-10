@@ -8,6 +8,15 @@ import java.util.LinkedList;
 
 public class LinkedListUtils {
 
+  /**
+   * This method assumes the input LinkedList is already sorted in non-descending order (i.e.,such
+   * that each element is greater than or equal to the one that is before it, and inserts the input
+   * int value into the correct location of the list. If the input LinkedList is null, this method
+   * simply terminate.
+   *
+   * @param list to add the value.
+   * @param value to add.
+   */
   public static void insertSorted(LinkedList<Integer> list, int value) {
     int index = 0;
     if (list != null) {
@@ -30,7 +39,15 @@ public class LinkedListUtils {
     }
   }
 
-
+  /**
+   * This method removes all instances of the N largest values in the LinkedList. Because the values
+   * are Strings, using compareTo method to find the largest elements, If the input LinkedList is
+   * null or if N is non-positive, this method should simply return without any modifications to the
+   * input LinkedList. Keep in mind that if any of the Nlargest values appear more than once in the
+   * LinkedList, this method should return remove all instances, so it may remove more than N
+   * elements overall. The other elements in the LinkedList should not be modified and their order
+   * must not be changed.
+   */
   public static void removeMaximumValues(LinkedList<String> list, int N) {
 
     if (list != null) {
@@ -47,6 +64,11 @@ public class LinkedListUtils {
     }
   }
 
+  /**
+   * Removes all duplicates values contained in the list.
+   *
+   * @param list to remove duplicates values.
+   */
   private static void removeDuplicated(LinkedList<String> list) {
     LinkedList<String> newList = new LinkedList<>();
     while (!list.isEmpty()) {
@@ -58,6 +80,12 @@ public class LinkedListUtils {
     list.addAll(newList);
   }
 
+  /**
+   * This method determines whether any part of the first LinkedList contains all elements of the
+   * second in the same order with no other elements in the sequence, i.e. it should return true if
+   * the second LinkedList is a subsequence of the first, and false if it is not. The method should
+   * return false if either input is null or empty.
+   */
   public static boolean containsSubsequence(LinkedList<Integer> one, LinkedList<Integer> two) {
     boolean result = false;
     if (one != null && two != null &&
