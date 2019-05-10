@@ -11,11 +11,17 @@ public class CustomListTest {
 
   private CustomList<Integer> customList;
 
+  /**
+   * Setup.
+   */
   @Before
   public void setUp() {
     customList = new CustomList();
   }
 
+  /**
+   * test for adding an element at the list
+   */
   @Test
   public void testAdd() {
     customList.add(1);
@@ -24,6 +30,9 @@ public class CustomListTest {
 
   }
 
+  /**
+   * test for inserting the specified element at the beginning of this list.
+   */
   @Test
   public void testAddFirst() {
     customList.add(1);
@@ -32,6 +41,9 @@ public class CustomListTest {
     assertEquals(expectedValue, customList.getFirst().intValue());
   }
 
+  /**
+   * Test appends the specified element to the end of this list.
+   */
   @Test
   public void testAddLast() {
     customList.add(1);
@@ -40,6 +52,9 @@ public class CustomListTest {
     assertEquals(expectedValue, customList.getLast().intValue());
   }
 
+  /**
+   * Test inserting the specified element at the specified position in this list.
+   */
   @Test
   public void testAddByIndex() {
     customList.add(1);
@@ -49,6 +64,9 @@ public class CustomListTest {
     assertEquals(expectedValue, customList.get(1).intValue());
   }
 
+  /**
+   * Test removing the specified element at the specified position in this list.
+   */
   @Test
   public void testRemoveByIndex() {
     customList.add(1);
@@ -59,6 +77,9 @@ public class CustomListTest {
     assertEquals(expectedValue, customList.get(1).intValue());
   }
 
+  /**
+   * Test for printing the element of the list.
+   */
   @Test
   public void testPrintList() {
     final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -72,8 +93,12 @@ public class CustomListTest {
             "2" + System.lineSeparator() +
             "3" + System.lineSeparator();
     assertEquals(expectedValue, outContent.toString());
+
   }
 
+  /**
+   * test for removing the last element  in this list
+   */
   @Test
   public void testRemoveLast() {
     customList.add(1);
@@ -84,6 +109,9 @@ public class CustomListTest {
     assertEquals(expectedValue, customList.getLast().intValue());
   }
 
+  /**
+   * test for removing the first element  in this list
+   */
   @Test
   public void testRemoveFirst() {
     customList.add(1);
@@ -94,6 +122,9 @@ public class CustomListTest {
     assertEquals(expectedValue, customList.getFirst().intValue());
   }
 
+  /**
+   * testing returns the element at the specified position in this list.
+   */
   @Test
   public void testGet() {
     customList.add(1);

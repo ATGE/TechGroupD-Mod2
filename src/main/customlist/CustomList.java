@@ -1,10 +1,16 @@
 package customlist;
 
+/**
+ * CustomList ,linked list implementation of the {@code IList} interface.
+ */
 public class CustomList<E> implements IList<E> {
 
   Node<E> head;
   Node<E> tail;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void add(E value) {
     Node<E> newNode = new Node(value);
@@ -16,6 +22,9 @@ public class CustomList<E> implements IList<E> {
     tail = newNode;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void addFirst(E value) {
     Node<E> newNode = new Node(value);
@@ -26,11 +35,17 @@ public class CustomList<E> implements IList<E> {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void addLast(E value) {
     add(value);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void add(int index, E value) {
     Node<E> newNode = new Node(value);
@@ -42,6 +57,9 @@ public class CustomList<E> implements IList<E> {
     currentNode.next = newNode;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void remove(int index) {
     Node currentNode = head;
@@ -51,6 +69,9 @@ public class CustomList<E> implements IList<E> {
     currentNode.next = currentNode.next.next;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public E get(int index) {
     Node<E> currentNode = head;
@@ -60,7 +81,9 @@ public class CustomList<E> implements IList<E> {
     return currentNode.value;
   }
 
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void printList() {
     Node<E> currentNode = head;
@@ -70,6 +93,9 @@ public class CustomList<E> implements IList<E> {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void removeLast() {
     if (head != null) {
@@ -86,6 +112,9 @@ public class CustomList<E> implements IList<E> {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void removeFirst() {
     if (head != null) {
@@ -96,6 +125,9 @@ public class CustomList<E> implements IList<E> {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public E getFirst() {
     if (head != null) {
@@ -104,6 +136,9 @@ public class CustomList<E> implements IList<E> {
     return null;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public E getLast() {
     if (tail != null) {
