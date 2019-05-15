@@ -1,6 +1,6 @@
 package customdoublylist;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 public class CustomListTest {
 
-  private CustomList<Integer> customList;
+  private CustomList customList;
 
   /**
    * Setup.
@@ -20,13 +20,13 @@ public class CustomListTest {
   }
 
   /**
-   * test for adding an element at the list
+   * test for adding an element at the list.
    */
   @Test
   public void testAdd() {
-    customList.add(1);
-    final int expectedValue = 1;
-    assertEquals(expectedValue, customList.get(0).intValue());
+    customList.add(new Integer(1));
+    final Integer expectedValue = new Integer(1);
+    assertEquals(expectedValue, customList.getFirst());
 
   }
 
@@ -35,10 +35,10 @@ public class CustomListTest {
    */
   @Test
   public void testAddFirst() {
-    customList.add(1);
-    customList.addFirst(2);
-    final int expectedValue = 2;
-    assertEquals(expectedValue, customList.getFirst().intValue());
+    customList.add("1");
+    customList.addFirst("2");
+    final String expectedValue = "2";
+    assertEquals(expectedValue, customList.getFirst());
   }
 
   /**
@@ -46,10 +46,10 @@ public class CustomListTest {
    */
   @Test
   public void testAddLast() {
-    customList.add(1);
-    customList.addLast(2);
+    customList.add(new Integer(1));
+    customList.addLast(new Integer(2));
     final int expectedValue = 2;
-    assertEquals(expectedValue, customList.getLast().intValue());
+    assertEquals(expectedValue, customList.getLast());
   }
 
   /**
@@ -57,11 +57,12 @@ public class CustomListTest {
    */
   @Test
   public void testAddByIndex() {
-    customList.add(1);
-    customList.add(3);
-    customList.add(1, 2);
-    final int expectedValue = 2;
-    assertEquals(expectedValue, customList.get(1).intValue());
+    final int index = 1;
+    final Integer expectedValue = 2;
+    customList.add(new Integer(1));
+    customList.add(new Integer(3));
+    customList.add(index, new Integer(2));
+    assertEquals(expectedValue, customList.get(index));
   }
 
   /**
@@ -69,12 +70,13 @@ public class CustomListTest {
    */
   @Test
   public void testRemoveByIndex() {
-    customList.add(1);
-    customList.add(2);
-    customList.add(3);
-    customList.remove(1);
-    final int expectedValue = 3;
-    assertEquals(expectedValue, customList.get(1).intValue());
+    final int index = 1;
+    final Integer expectedValue = 3;
+    customList.add(new Integer(1));
+    customList.add(new Integer(2));
+    customList.add(new Integer(3));
+    customList.remove(index);
+    assertEquals(expectedValue, customList.get(index));
   }
 
   /**
@@ -84,42 +86,42 @@ public class CustomListTest {
   public void testPrintList() {
     final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outContent));
-    customList.add(1);
-    customList.add(2);
-    customList.add(3);
+    customList.add("1");
+    customList.add("2");
+    customList.add("3");
     customList.printList();
-    final String expectedValue =
-        "1" + System.lineSeparator() +
-            "2" + System.lineSeparator() +
-            "3" + System.lineSeparator();
+    final String expectedValue
+        = "1" + System.lineSeparator()
+        + "2" + System.lineSeparator()
+        + "3" + System.lineSeparator();
     assertEquals(expectedValue, outContent.toString());
 
   }
 
   /**
-   * test for removing the last element  in this list
+   * test for removing the last element  in this list.
    */
   @Test
   public void testRemoveLast() {
-    customList.add(1);
-    customList.add(2);
-    customList.add(3);
+    customList.add("1");
+    customList.add("2");
+    customList.add("3");
     customList.removeLast();
-    final int expectedValue = 2;
-    assertEquals(expectedValue, customList.getLast().intValue());
+    final String expectedValue = "2";
+    assertEquals(expectedValue, customList.getLast());
   }
 
   /**
-   * test for removing the first element  in this list
+   * test for removing the first element  in this list.
    */
   @Test
   public void testRemoveFirst() {
-    customList.add(1);
-    customList.add(2);
-    customList.add(3);
+    customList.add("1");
+    customList.add("2");
+    customList.add("3");
     customList.removeFirst();
-    final int expectedValue = 2;
-    assertEquals(expectedValue, customList.getFirst().intValue());
+    final String expectedValue = "2";
+    assertEquals(expectedValue, customList.getFirst());
   }
 
   /**
@@ -127,14 +129,14 @@ public class CustomListTest {
    */
   @Test
   public void testGet() {
-    customList.add(1);
-    customList.add(2);
-    customList.add(3);
-    final int expectedValue1 = 1;
-    final int expectedValue2 = 2;
-    final int expectedValue3 = 3;
-    assertEquals(expectedValue1, customList.get(0).intValue());
-    assertEquals(expectedValue2, customList.get(1).intValue());
-    assertEquals(expectedValue3, customList.get(2).intValue());
+    customList.add("1");
+    customList.add("2");
+    customList.add("3");
+    final String expectedValue1 = "1";
+    final String expectedValue2 = "2";
+    final String expectedValue3 = "3";
+    assertEquals(expectedValue1, customList.get(0));
+    assertEquals(expectedValue2, customList.get(1));
+    assertEquals(expectedValue3, customList.get(2));
   }
 }

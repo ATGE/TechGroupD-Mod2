@@ -1,7 +1,7 @@
 package customdoublylist;
 
 /**
- * Node implementation, contain data and also may link to other nodes
+ * Node implementation, contain data and also may link to other nodes.
  *
  * @param <E> the type of element
  */
