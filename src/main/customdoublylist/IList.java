@@ -1,4 +1,4 @@
-package customlist;
+package customdoublylist;
 
 /**
  * An ordered collection . The user of this interface has precise control over where in the list
