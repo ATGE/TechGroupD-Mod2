@@ -2,10 +2,9 @@ package customqueue;
 
 import static org.junit.Assert.assertEquals;
 
-
-import customdoublylist.CustomList;
-import org.junit.Test;
 import org.junit.Before;
+import org.junit.Test;
+
 
 public class CustomQueueTest {
 
@@ -29,6 +28,9 @@ public class CustomQueueTest {
     assertEquals(expectedValue, queue.peek());
   }
 
+  /**
+   * test for removing an element at the queue.
+   */
   @Test
   public void remove() {
     queue.add("test1");
@@ -40,6 +42,9 @@ public class CustomQueueTest {
 
   }
 
+  /**
+   * test peek element at the queue.
+   */
   @Test
   public void peek() {
     final Integer expectedValue1 = 123;
