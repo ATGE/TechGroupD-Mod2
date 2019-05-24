@@ -2,7 +2,8 @@ package customdoublylist;
 
 /**
  * CustomList, doubly-linked list implementation of the {@code IList} interface.
- * @param  <E> the type of elements held in this collection
+ *
+ * @param <E> the type of elements held in this collection
  */
 public class CustomList<E> implements IList<E> {
 
@@ -121,7 +122,7 @@ public class CustomList<E> implements IList<E> {
    */
   @Override
   public void removeFirst() {
-    if (head != null) {
+    if (head != tail) {
       head = head.next;
       head.previous = null;
     }
