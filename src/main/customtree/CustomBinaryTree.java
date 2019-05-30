@@ -18,10 +18,6 @@ public class CustomBinaryTree<E> {
     }
   }
 
-  public CustomBinaryTree() {
-
-  }
-
   protected Node<E> root;
 
   /**
