@@ -45,12 +45,12 @@ public class CustomBinaryTree<E> {
       current.leftChild = add(current.leftChild, value);
     }
 
-//    else {
-//      current = rotarNodeToRight(current);
+//    else {g
+//      current = rotarNodeToRight(current)
 //    }
     current.balanceFactor = height(current.leftChild) - height(current.rightChild);
     if (getBalanceFactor(current.leftChild) - getBalanceFactor(current.rightChild) == 2) {
-      current = rotarNodeToLeft(current);
+      current = rotateNodeToLeft(current);
     }
     return current;
   }
@@ -75,7 +75,7 @@ public class CustomBinaryTree<E> {
     System.out.println(n.value);
   }
 
-  public Node<E> rotarNodeToRight(Node currentNode) {
+  public Node<E> rotateNodeToRight(Node currentNode) {
     Node rotedNode = currentNode.rightChild;
     currentNode.rightChild = rotedNode.leftChild;
     rotedNode.leftChild = currentNode;
@@ -86,7 +86,7 @@ public class CustomBinaryTree<E> {
     return rotedNode;
   }
 
-  public Node<E> rotarNodeToLeft(Node currentNode) {
+  public Node<E> rotateNodeToLeft(Node currentNode) {
     Node rotedNode = currentNode.leftChild;
     currentNode.leftChild = rotedNode.rightChild;
     rotedNode.rightChild = currentNode;
