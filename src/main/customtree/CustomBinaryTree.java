@@ -10,11 +10,13 @@ public class CustomBinaryTree<E> {
   protected class Node<E> {
 
     E value;
+    int balanceFactor;
     Node leftChild = null;
     Node rightChild = null;
 
     Node(E value) {
       this.value = value;
+      balanceFactor = 0;
     }
   }
 
@@ -38,10 +40,18 @@ public class CustomBinaryTree<E> {
     } else if (current.value.hashCode() <= value.hashCode()) {
 
       current.rightChild = add(current.rightChild, value);
+
     } else {
       current.leftChild = add(current.leftChild, value);
     }
 
+//    else {
+//      current = rotarNodeToRight(current);
+//    }
+    current.balanceFactor = height(current.leftChild) - height(current.rightChild);
+    if (getBalanceFactor(current.leftChild) - getBalanceFactor(current.rightChild) == 2) {
+      current = rotarNodeToLeft(current);
+    }
     return current;
   }
 
@@ -64,6 +74,46 @@ public class CustomBinaryTree<E> {
   private void visit(Node<E> n) {
     System.out.println(n.value);
   }
+
+  public Node<E> rotarNodeToRight(Node currentNode) {
+    Node rotedNode = currentNode.rightChild;
+    currentNode.rightChild = rotedNode.leftChild;
+    rotedNode.leftChild = currentNode;
+    currentNode.balanceFactor = Math
+        .max(getBalanceFactor(currentNode.leftChild), getBalanceFactor(currentNode.rightChild)) + 1;
+    rotedNode.balanceFactor = Math
+        .max(getBalanceFactor(currentNode.leftChild), getBalanceFactor(currentNode.rightChild)) + 1;
+    return rotedNode;
+  }
+
+  public Node<E> rotarNodeToLeft(Node currentNode) {
+    Node rotedNode = currentNode.leftChild;
+    currentNode.leftChild = rotedNode.rightChild;
+    rotedNode.rightChild = currentNode;
+    currentNode.balanceFactor = Math
+        .max(getBalanceFactor(currentNode.leftChild), getBalanceFactor(currentNode.rightChild)) + 1;
+    rotedNode.balanceFactor = Math
+        .max(getBalanceFactor(currentNode.leftChild), getBalanceFactor(currentNode.rightChild)) + 1;
+    return rotedNode;
+  }
+
+  int getBalanceFactor(Node node) {
+    if (node == null) {
+      return -1;
+    }
+    return node.balanceFactor;
+  }
+
+  private int height(Node node) {
+    if (node == null) {
+      return (-1);
+    }
+    int leftHeight = height(node.leftChild);
+    int rightHeight = height(node.rightChild);
+    return (Math.max(leftHeight, rightHeight) + 1);
+
+  }
+
 }
 
 

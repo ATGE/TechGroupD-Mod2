@@ -44,5 +44,18 @@ public class CustomBinaryTreeTest {
     assertEquals(expectedValue, outContent.toString());
 
   }
+  /**
+   * test for adding Integers element at the tree.
+   */
+  @Test
+  public void addHeightRight() {
+    customBinaryTree = new CustomBinaryTree<Integer>();
+    customBinaryTree.add(1);
+    customBinaryTree.add(2);
+    customBinaryTree.add(3);
+//    assertEquals(1, customBinaryTree.root.value);
+//    assertEquals(0, customBinaryTree.root.leftChild.value);
+//    assertEquals(2, customBinaryTree.root.rightChild.value);
+  }
 
 }
