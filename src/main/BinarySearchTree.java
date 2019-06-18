@@ -86,7 +86,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
   }
 
   /**
-   * Remove val inn the tree.
+   * Remove val in the tree.
    */
   public boolean remove(E val) {
     return remove(root, null, val);
