@@ -44,18 +44,19 @@ public class CustomBinaryTreeTest {
     assertEquals(expectedValue, outContent.toString());
 
   }
+
   /**
-   * test for adding Integers element at the tree.
+   * test for height of the tree , if binary tree is self-balanced, has height should be less to
+   * LOG2(N+1) , for N = number of nodes .
    */
   @Test
   public void addHeightRight() {
     customBinaryTree = new CustomBinaryTree<Integer>();
-    customBinaryTree.add(1);
-    customBinaryTree.add(2);
-    customBinaryTree.add(3);
-//    assertEquals(1, customBinaryTree.root.value);
-//    assertEquals(0, customBinaryTree.root.leftChild.value);
-//    assertEquals(2, customBinaryTree.root.rightChild.value);
+    final int nodeNumber = 16;
+    for (int nodeValue = 0; nodeValue < nodeNumber; nodeValue++) {
+      customBinaryTree.add(nodeValue);
+    }
+    assertEquals(4, customBinaryTree.height());
   }
 
 }
