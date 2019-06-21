@@ -25,33 +25,34 @@ public class CustomBinaryTree<E> {
   protected Node<E> root;
 
   /**
-   * Inserts the given data into the binary tree. Uses a recursive helper.
+   * Inserts the given data into the binary tree.
    */
   public void add(E value) {
-    root = add(root, value);
-  }
-
-  /**
-   * Recursive insert given a node pointer, recur down and insert the given data into the tree.
-   * Returns the new node pointer (the standard way to communicate a changed pointer back to the
-   * caller).
-   */
-  private Node<E> add(Node<E> current, E value) {
-    if (current == null) {
-      current = new Node<>(value);
-    } else if (current.value.hashCode() <= value.hashCode()) {
-
-      current.rightChild = add(current.rightChild, value);
-      current.rightChild.parent = current;
-
+    if (root == null) {
+      root = new Node(value);
     } else {
-      current.leftChild = add(current.leftChild, value);
-      current.leftChild.parent = current;
-    }
-    selfBalance(current);
-    return current;
-  }
 
+      Node n = root;
+      while (true) {
+        Node parent = n;
+
+        boolean goLeft = n.value.hashCode() > value.hashCode();
+        n = goLeft ? n.leftChild : n.rightChild;
+
+        if (n == null) {
+          if (goLeft) {
+            parent.leftChild = new Node(value);
+            parent.leftChild.parent = parent;
+          } else {
+            parent.rightChild = new Node(value);
+            parent.rightChild.parent = parent;
+          }
+          selfBalance(parent);
+          break;
+        }
+      }
+    }
+  }
 
   /**
    * Prints the node values in the "inorder" order. Uses a recursive helper to do the traversal.
@@ -72,7 +73,7 @@ public class CustomBinaryTree<E> {
     System.out.println(n.value);
   }
 
-  private Node selfBalance(Node node) {
+  private void selfBalance(Node node) {
     updateBalance(node);
 
     if (node.balance == -2) {
@@ -95,7 +96,7 @@ public class CustomBinaryTree<E> {
     } else {
       root = node;
     }
-    return node;
+
   }
 
   private Node rotateLeft(Node node) {

@@ -18,11 +18,7 @@ public class CustomBinaryTreeTest {
   public void add() {
     customBinaryTree = new CustomBinaryTree<Integer>();
     customBinaryTree.add(1);
-    customBinaryTree.add(0);
-    customBinaryTree.add(2);
     assertEquals(1, customBinaryTree.root.value);
-    assertEquals(0, customBinaryTree.root.leftChild.value);
-    assertEquals(2, customBinaryTree.root.rightChild.value);
   }
 
   /**
@@ -33,14 +29,10 @@ public class CustomBinaryTreeTest {
     final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outContent));
     customBinaryTree = new CustomBinaryTree<String>();
-    customBinaryTree.add("1");
-    customBinaryTree.add("3");
-    customBinaryTree.add("2");
+    customBinaryTree.add("0");
     customBinaryTree.printTree();
     final String expectedValue
-        = "1" + System.lineSeparator()
-        + "2" + System.lineSeparator()
-        + "3" + System.lineSeparator();
+        = "0" + System.lineSeparator();
     assertEquals(expectedValue, outContent.toString());
 
   }
@@ -57,6 +49,16 @@ public class CustomBinaryTreeTest {
       customBinaryTree.add(nodeValue);
     }
     assertEquals(4, customBinaryTree.height());
+  }
+
+  /**
+   * test for deleting element at the tree.
+   */
+  @Test
+  public void delete() {
+    customBinaryTree = new CustomBinaryTree<Integer>();
+    customBinaryTree.add(1);
+    customBinaryTree.delete(1);
   }
 
 }
