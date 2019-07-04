@@ -34,30 +34,25 @@ public class CustomTree<T> {
    * Adds value to tree.
    *
    * @param data value to add
-   * @param parent to add child
+   * @param tree to add child
    */
-  public void add(T data, CustomTree parent) {
-    if (parent == null) {
+  public void add(T data, CustomTree tree) {
+    if (tree == null) {
       this.data = data;
     } else {
-      if (parent == this) {
+      if (tree == this) {
         addChild(data);
       } else {
-        add(data, parent, children);
+        add(data, tree, this);
       }
     }
   }
 
 
-  private void add(T data, CustomTree parent, CustomTree<T>[] children) {
-
-    for (CustomTree tree : children) {
-      if (parent == tree) {
-        tree.addChild(data);
-      } else {
-        if (tree.hasChildren()) {
-          tree.add(data, parent, children);
-        }
+  private void add(T data, CustomTree<T> parent, CustomTree<T> currentTree) {
+    if (currentTree.hasChildren()) {
+      for (CustomTree<T> tree : currentTree.children) {
+        tree.add(data, parent);
       }
     }
   }
@@ -96,5 +91,24 @@ public class CustomTree<T> {
       return null;
     }
   }
-}
 
+  /**
+   * Retrieves tha data at the tree as String with line separator.
+   *
+   * @return String
+   */
+  public String toString() {
+    StringBuilder treeBuilder = new StringBuilder();
+    if (data == null) {
+      return "";
+    }
+    treeBuilder.append(data.toString());
+    treeBuilder.append(System.lineSeparator());
+    if (hasChildren()) {
+      for (CustomTree<T> tree : this.children) {
+        treeBuilder.append(tree.toString());
+      }
+    }
+    return treeBuilder.toString();
+  }
+}
