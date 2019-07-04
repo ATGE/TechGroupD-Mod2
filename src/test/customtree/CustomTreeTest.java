@@ -1,7 +1,9 @@
 package customtree;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,9 @@ import org.junit.Test;
 
 public class CustomTreeTest {
 
-
+  /**
+   * test for adding String element at the tree.
+   */
   @Test
   public void add() {
     CustomTree<String> tree = new CustomTree<>();
@@ -33,6 +37,9 @@ public class CustomTreeTest {
     assertEquals("root", tree.data);
   }
 
+  /**
+   * test for adding children at the tree.
+   */
   @Test
   public void addChildren() {
     CustomTree<String> tree = new CustomTree<>();
@@ -40,5 +47,23 @@ public class CustomTreeTest {
     tree.addChild("child 1");
     tree.addChild("child 2");
     tree.addChild("child 3");
+    tree.hasChildren();
+  }
+
+  /**
+   * test for adding a child to sub-tree of a tree.
+   */
+  @Test
+  public void addChildToSubTree() {
+    CustomTree<String> tree = new CustomTree<>();
+    tree.add("root data", null);
+    tree.addChild("child 1");
+    tree.addChild("child 2");
+    CustomTree child1 = tree.getChild(0, tree);
+    tree.add("child 1.1", child1);
+    assertTrue(child1.hasChildren());
+    CustomTree child11 = tree.getChild(0, child1);
+    assertEquals("child 1.1", child11.data);
+    assertEquals(false, child11.hasChildren());
   }
 }
